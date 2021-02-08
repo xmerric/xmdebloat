@@ -1,6 +1,24 @@
+$testchoco = powershell choco -v
+if(-not($testchoco)){
+    Write-Output "Seems Chocolatey is not installed, installing now"
+   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+else{
+    Write-Output "Chocolatey Version $testchoco is already installed"
+}
 
+# or
+
+if(test-path "C:\ProgramData\chocolatey\choco.exe"){
+
+}
 
 $wshell = New-Object -ComObject Wscript.Shell
+# Ask for elevated permissions if required
+If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {
+	Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+	Exit
+}
 
 
 
@@ -24,7 +42,7 @@ $Button4_Click = ({
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 })
 $Button5_Click = ({ 
-    Write-Host "Installing 7-Zip Compression Tool"
+    Write-Host "Installing 7-Zip"
     choco install 7zip -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 })
@@ -44,75 +62,420 @@ $Button8_Click = ({
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 })
 $Button9_Click = ({ 
-    Write-Host "Ccleaner"
+    Write-Host "Installing Ccleaner"
     choco install ccleaner -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button10_Click = ({ 
-    Write-Host "Java Runtime"
+    Write-Host "Installing Java Runtime"
     choco install javaruntime -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button11_Click = ({ 
-    Write-Host "Gimp Photo Edit"
+    Write-Host "Installing Gimp Photo Edit"
     choco install gimp -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button12_Click = ({ 
-    Write-Host "Filezilla FTP"
+    Write-Host "Installing Filezilla FTP"
     choco install filezilla -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button13_Click = ({ 
-    Write-Host "Putty"
-    choco install putty -y
+    Write-Host "Installing Putty"
+    choco install putty.install -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button14_Click = ({ 
-    Write-Host "Dropbox"
+    Write-Host "Installing Dropbox"
     choco install dropbox -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button15_Click = ({ 
-    Write-Host "Audacity"
+    Write-Host "Installing Audacity"
     choco install audacity -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
 $Button16_Click = ({ 
-    Write-Host "Klite Codecs Mega"
+    Write-Host "Installing K-lite Codecs Mega"
     choco install k-litecodecpackmega -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
 
 })
-$Button17_Click = {Write-Host "Blank"
-}
-$Button18_Click = {Write-Host "Blank"
-}
-$Button19_Click = {Write-Host "Blank"
-}
-$Button20_Click = {Write-Host "Blank"
-}
-$Button21_Click = {Write-Host "Blank"
-}
-$Button22_Click = {Write-Host "Blank"
-}
-$Button23_Click = {Write-Host "Blank"
-}
-$Button24_Click = {Write-Host "Blank"
-}
+$Button17_Click = ({ 
+    Write-Host "Installing Firefox"
+    choco install firefox-y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button18_Click = ({ 
+    Write-Host "Installing Microsoft Teams"
+    choco install microsoft-teams.install -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button19_Click = ({ 
+    Write-Host "Installing K-lite Codecs Mega"
+    choco install k-litecodecpackmega -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button20_Click = ({ 
+    Write-Host "Installing K-lite Codecs Mega"
+    choco install k-litecodecpackmega -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button21_Click = ({ 
+    Write-Host "Installing K-lite Codecs Mega"
+    choco install k-litecodecpackmega -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button22_Click = ({ 
+    Write-Host "Installing K-lite Codecs Mega"
+    choco install k-litecodecpackmega -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button23_Click = ({ 
+    Write-Host "Installing K-lite Codecs Mega"
+    choco install k-litecodecpackmega -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button24_Click = ({ 
+    Write-Host "Installing K-lite Codecs Mega"
+    choco install k-litecodecpackmega -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
 $Button25_Click = ({ 
     Write-Host "Installing Chocolatey"
 	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	choco install chocolatey-core.extension -y
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
 })
+$Button26_Click = ({ 
+    Write-Host "Upgrading Chocolatey"	
+	choco upgrade chocolatey -y
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
+})
+$Button27_Click = ({ 
+    Write-Host "Creating Restore Point incase something bad happens"
+    Enable-ComputerRestore -Drive "C:\"
+    Checkpoint-Computer -Description "RestorePoint1" -RestorePointType "MODIFY_SETTINGS"
+
+	Write-Host "Running O&O Shutup with Recommended Settings"
+    Import-Module BitsTransfer		choco install shutup10 -y
+	Start-BitsTransfer -Source "https://raw.githubusercontent.com/xmerric/win10script/master/ooshutup10.cfg" -Destination ooshutup10.cfg		OOSU10 ooshutup10.cfg /quiet
+	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe	
+	./OOSU10.exe ooshutup10.cfg /quiet
+
+    Write-Host "Disabling Telemetry..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" | Out-Null
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Application Experience\ProgramDataUpdater" | Out-Null
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Autochk\Proxy" | Out-Null
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" | Out-Null
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null
+    Write-Host "Disabling Application suggestions..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "ContentDeliveryAllowed" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "OemPreInstalledAppsEnabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEnabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEverEnabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SilentInstalledAppsEnabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338387Enabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338388Enabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338389Enabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-353698Enabled" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1
+    Write-Host "Disabling Activity History..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableActivityFeed" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "PublishUserActivities" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "UploadUserActivities" -Type DWord -Value 0
+    Write-Host "Disabling Location Tracking..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location")) {
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" -Name "Value" -Type String -Value "Deny"
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 0
+    Write-Host "Disabling automatic Maps updates..."
+	Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -Type DWord -Value 0
+    Write-Host "Disabling Feedback..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "DoNotShowFeedbackNotifications" -Type DWord -Value 1
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClient" -ErrorAction SilentlyContinue | Out-Null
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" -ErrorAction SilentlyContinue | Out-Null
+    Write-Host "Disabling Tailored Experiences..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent")) {
+		New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableTailoredExperiencesWithDiagnosticData" -Type DWord -Value 1
+    Write-Host "Disabling Advertising ID..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" -Name "DisabledByGroupPolicy" -Type DWord -Value 1
+    Write-Host "Disabling Error reporting..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -Type DWord -Value 1
+	Disable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
+    Write-Host "Restricting Windows Update P2P only to local network..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config")) {
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 1
+    Write-Host "Stopping and disabling Diagnostics Tracking Service..."
+	Stop-Service "DiagTrack" -WarningAction SilentlyContinue
+	Set-Service "DiagTrack" -StartupType Disabled
+    Write-Host "Stopping and disabling WAP Push Service..."
+	Stop-Service "dmwappushservice" -WarningAction SilentlyContinue
+	Set-Service "dmwappushservice" -StartupType Disabled
+    Write-Host "Enabling F8 boot menu options..."
+	bcdedit /set `{current`} bootmenupolicy Legacy | Out-Null
+    Write-Host "Stopping and disabling Home Groups services..."
+	Stop-Service "HomeGroupListener" -WarningAction SilentlyContinue
+	Set-Service "HomeGroupListener" -StartupType Disabled
+	Stop-Service "HomeGroupProvider" -WarningAction SilentlyContinue
+	Set-Service "HomeGroupProvider" -StartupType Disabled
+    Write-Host "Disabling Remote Assistance..."
+	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance" -Name "fAllowToGetHelp" -Type DWord -Value 0
+    Write-Host "Disabling Storage Sense..."
+	Remove-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Recurse -ErrorAction SilentlyContinue
+    Write-Host "Stopping and disabling Superfetch service..."
+	Stop-Service "SysMain" -WarningAction SilentlyContinue
+	Set-Service "SysMain" -StartupType Disabled
+    Write-Host "Setting BIOS time to UTC..."
+	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "RealTimeIsUniversal" -Type DWord -Value 1
+    Write-Host "Disabling Hibernation..."
+	Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Power" -Name "HibernteEnabled" -Type Dword -Value 0
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings")) {
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" -Name "ShowHibernateOption" -Type Dword -Value 0
+    Write-Host "Showing task manager details..."
+	$taskmgr = Start-Process -WindowStyle Hidden -FilePath taskmgr.exe -PassThru
+	Do {
+		Start-Sleep -Milliseconds 100
+		$preferences = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -ErrorAction SilentlyContinue
+	} Until ($preferences)
+	Stop-Process $taskmgr
+	$preferences.Preferences[28] = 0
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -Type Binary -Value $preferences.Preferences
+    Write-Host "Showing file operations details..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -Type DWord -Value 1
+    Write-Host "Hiding Task View button..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Type DWord -Value 0
+    Write-Host "Hiding People icon..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
+    Write-Host "Showing all tray icons..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
+	Write-Host "Enabling NumLock after startup..."
+	If (!(Test-Path "HKU:")) {
+		New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS | Out-Null
+	}
+	Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type DWord -Value 2147483650
+	Add-Type -AssemblyName System.Windows.Forms
+	If (!([System.Windows.Forms.Control]::IsKeyLocked('NumLock'))) {
+		$wsh = New-Object -ComObject WScript.Shell
+		$wsh.SendKeys('{NUMLOCK}')
+	}
+
+    Write-Host "Changing default Explorer view to This PC..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1
+    Write-Host "Hiding 3D Objects icon from This PC..."
+	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -Recurse -ErrorAction SilentlyContinue
+
+$Bloatware = @(
+
+        #Unnecessary Windows 10 AppX Apps
+        "Microsoft.3DBuilder"
+        "Microsoft.AppConnector"
+	    "Microsoft.BingFinance"
+	    "Microsoft.BingNews"
+	    "Microsoft.BingSports"
+	    "Microsoft.BingTranslator"
+	    "Microsoft.BingWeather"
+        "Microsoft.GetHelp"
+        "Microsoft.Getstarted"
+        "Microsoft.Messaging"
+        "Microsoft.Microsoft3DViewer"
+        "Microsoft.MicrosoftSolitaireCollection"
+        "Microsoft.NetworkSpeedTest"
+        "Microsoft.News"
+        "Microsoft.Office.Lens"
+        "Microsoft.Office.Sway"
+        "Microsoft.OneConnect"
+        "Microsoft.People"
+        "Microsoft.Print3D"
+        "Microsoft.SkypeApp"
+        "Microsoft.StorePurchaseApp"
+        "Microsoft.Wallet"
+        "Microsoft.Whiteboard"
+        "Microsoft.WindowsAlarms"
+        "microsoft.windowscommunicationsapps"
+        "Microsoft.WindowsFeedbackHub"
+        "Microsoft.WindowsMaps"
+        "Microsoft.WindowsSoundRecorder"
+        "Microsoft.ZuneMusic"
+        "Microsoft.ZuneVideo"
+
+        #Sponsored Windows 10 AppX Apps
+        #Add sponsored/featured apps to remove in the "*AppName*" format
+        "*EclipseManager*"
+        "*ActiproSoftwareLLC*"
+        "*AdobeSystemsIncorporated.AdobePhotoshopExpress*"
+        "*Duolingo-LearnLanguagesforFree*"
+        "*PandoraMediaInc*"
+        "*CandyCrush*"
+        "*BubbleWitch3Saga*"
+        "*Wunderlist*"
+        "*Flipboard*"
+        "*Twitter*"
+        "*Facebook*"
+        "*Royal Revolt*"
+        "*Sway*"
+        "*Speed Test*"
+        "*Dolby*"
+        "*Viber*"
+        "*ACGMediaPlayer*"
+        "*Netflix*"
+        "*OneCalendar*"
+        "*LinkedInforWindows*"
+        "*HiddenCityMysteryofShadows*"
+        "*Hulu*"
+        "*HiddenCity*"
+        "*AdobePhotoshopExpress*"
+                     
+        #Optional: Typically not removed but you can if you need to for some reason
+        #"*Microsoft.Advertising.Xaml_10.1712.5.0_x64__8wekyb3d8bbwe*"
+        #"*Microsoft.Advertising.Xaml_10.1712.5.0_x86__8wekyb3d8bbwe*"
+        #"*Microsoft.BingWeather*"
+        #"*Microsoft.MSPaint*"
+        #"*Microsoft.MicrosoftStickyNotes*"
+        #"*Microsoft.Windows.Photos*"
+        #"*Microsoft.WindowsCalculator*"
+        #"*Microsoft.WindowsStore*"
+    )
+    foreach ($Bloat in $Bloatware) {
+        Get-AppxPackage -Name $Bloat| Remove-AppxPackage
+        Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $Bloat | Remove-AppxProvisionedPackage -Online
+        Write-Host "Trying to remove $Bloat."
+    }
+
+    Write-Host "Installing Windows Media Player..."
+	Enable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
+
+    #Stops edge from taking over as the default .PDF viewer    
+    Write-Host "Stopping Edge from taking over as the default .PDF viewer"
+	# Identify the edge application class 
+	$Packages = "HKCU:SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\Repository\Packages" 
+	$edge = Get-ChildItem $Packages -Recurse -include "MicrosoftEdge" 
+		
+	# Specify the paths to the file and URL associations 
+	$FileAssocKey = Join-Path $edge.PSPath Capabilities\FileAssociations 
+	$URLAssocKey = Join-Path $edge.PSPath Capabilities\URLAssociations 
+		
+	# get the software classes for the file and URL types that Edge will associate 
+	$FileTypes = Get-Item $FileAssocKey 
+	$URLTypes = Get-Item $URLAssocKey 
+		
+	$FileAssoc = Get-ItemProperty $FileAssocKey 
+	$URLAssoc = Get-ItemProperty $URLAssocKey 
+		
+	$Associations = @() 
+	$Filetypes.Property | foreach {$Associations += $FileAssoc.$_} 
+	$URLTypes.Property | foreach {$Associations += $URLAssoc.$_} 
+		
+	# add registry values in each software class to stop edge from associating as the default 
+	foreach ($Association in $Associations) 
+			{ 
+			$Class = Join-Path HKCU:SOFTWARE\Classes $Association 
+			#if (Test-Path $class) 
+			#   {write-host $Association} 
+			# Get-Item $Class 
+			Set-ItemProperty $Class -Name NoOpenWith -Value "" 
+			Set-ItemProperty $Class -Name NoStaticDefaultVerb -Value "" 
+			} 
+            
+    
+    #Removes Paint3D stuff from context menu
+$Paint3Dstuff = @(
+        "HKCR:\SystemFileAssociations\.3mf\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.bmp\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.fbx\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.gif\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.jfif\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.jpe\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.jpeg\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.jpg\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.png\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.tif\Shell\3D Edit"
+	"HKCR:\SystemFileAssociations\.tiff\Shell\3D Edit"
+    )
+    #Rename reg key to remove it, so it's revertible
+    foreach ($Paint3D in $Paint3Dstuff) {
+        If (Test-Path $Paint3D) {
+	    $rmPaint3D = $Paint3D + "_"
+	    Set-Item $Paint3D $rmPaint3D
+	}
+    }
+    
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+})
+
+
+$Button28_Click = ({ 
+    Write-Host "Disabling driver offering through Windows Update..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata" -Name "PreventDeviceMetadataFromNetwork" -Type DWord -Value 1
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DontPromptForWindowsUpdate" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DontSearchWindowsUpdate" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DriverUpdateWizardWuSearchEnabled" -Type DWord -Value 0
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -Type DWord -Value 1
+    Write-Host "Disabling Windows Update automatic restart..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoRebootWithLoggedOnUsers" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -Type DWord -Value 0
+	$wshell.Popup("Operation Completed",0,"Done",0x0)
+})
+
 $Form1_Load = {
 }
 Add-Type -AssemblyName System.Windows.Forms
@@ -142,7 +505,12 @@ $Form1 = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.Button]$Button23 = $null
 [System.Windows.Forms.Button]$Button24 = $null
 [System.Windows.Forms.Button]$Button25 = $null
+[System.Windows.Forms.Button]$Button26 = $null
 [System.Windows.Forms.Label]$Label1 = $null
+[System.Windows.Forms.GroupBox]$GroupBox1 = $null
+[System.Windows.Forms.Button]$Button28 = $null
+[System.Windows.Forms.Button]$Button27 = $null
+[System.Windows.Forms.PictureBox]$PictureBox1 = $null
 function InitializeComponent
 {
 $Button1 = (New-Object -TypeName System.Windows.Forms.Button)
@@ -170,7 +538,14 @@ $Button22 = (New-Object -TypeName System.Windows.Forms.Button)
 $Button23 = (New-Object -TypeName System.Windows.Forms.Button)
 $Button24 = (New-Object -TypeName System.Windows.Forms.Button)
 $Button25 = (New-Object -TypeName System.Windows.Forms.Button)
+$Button26 = (New-Object -TypeName System.Windows.Forms.Button)
 $Label1 = (New-Object -TypeName System.Windows.Forms.Label)
+$GroupBox1 = (New-Object -TypeName System.Windows.Forms.GroupBox)
+$Button27 = (New-Object -TypeName System.Windows.Forms.Button)
+$Button28 = (New-Object -TypeName System.Windows.Forms.Button)
+$PictureBox1 = (New-Object -TypeName System.Windows.Forms.PictureBox)
+$GroupBox1.SuspendLayout()
+([System.ComponentModel.ISupportInitialize]$PictureBox1).BeginInit()
 $Form1.SuspendLayout()
 #
 #Button1
@@ -372,7 +747,7 @@ $Button17.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @(
 $Button17.Name = [System.String]'Button17'
 $Button17.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]159,[System.Int32]34))
 $Button17.TabIndex = [System.Int32]16
-$Button17.Text = [System.String]'Button17'
+$Button17.Text = [System.String]'Mozilla Firefox'
 $Button17.UseCompatibleTextRendering = $true
 $Button17.UseVisualStyleBackColor = $true
 $Button17.add_Click($Button17_Click)
@@ -384,7 +759,7 @@ $Button18.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @(
 $Button18.Name = [System.String]'Button18'
 $Button18.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]159,[System.Int32]34))
 $Button18.TabIndex = [System.Int32]17
-$Button18.Text = [System.String]'Button18'
+$Button18.Text = [System.String]'Microsoft Teams'
 $Button18.UseCompatibleTextRendering = $true
 $Button18.UseVisualStyleBackColor = $true
 $Button18.add_Click($Button18_Click)
@@ -466,18 +841,30 @@ $Button24.add_Click($Button24_Click)
 $Button25.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Tahoma',[System.Single]15.75,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
 $Button25.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]12))
 $Button25.Name = [System.String]'Button25'
-$Button25.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]725,[System.Int32]48))
+$Button25.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]356,[System.Int32]48))
 $Button25.TabIndex = [System.Int32]24
 $Button25.Text = [System.String]'Install Choc'
 $Button25.UseCompatibleTextRendering = $true
 $Button25.UseVisualStyleBackColor = $true
 $Button25.add_Click($Button25_Click)
 #
+#Button26
+#
+$Button26.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Tahoma',[System.Single]15.75,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$Button26.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]374,[System.Int32]12))
+$Button26.Name = [System.String]'Button26'
+$Button26.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]363,[System.Int32]48))
+$Button26.TabIndex = [System.Int32]26
+$Button26.Text = [System.String]'Update Choc'
+$Button26.UseCompatibleTextRendering = $true
+$Button26.UseVisualStyleBackColor = $true
+$Button26.add_Click($Button26_Click)
+#
 #Label1
 #
 $Label1.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Tahoma',[System.Single]15.75,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
 $Label1.ForeColor = [System.Drawing.Color]::Silver
-$Label1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]83,[System.Int32]540))
+$Label1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]83,[System.Int32]602))
 $Label1.Name = [System.String]'Label1'
 $Label1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]577,[System.Int32]36))
 $Label1.TabIndex = [System.Int32]25
@@ -485,10 +872,60 @@ $Label1.Text = [System.String]'Multi installer by Michael Baker 2021'
 $Label1.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter
 $Label1.UseCompatibleTextRendering = $true
 #
+#GroupBox1
+#
+$GroupBox1.Controls.Add($Button28)
+$GroupBox1.Controls.Add($Button27)
+$GroupBox1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]83,[System.Int32]535))
+$GroupBox1.Name = [System.String]'GroupBox1'
+$GroupBox1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]577,[System.Int32]64))
+$GroupBox1.TabIndex = [System.Int32]27
+$GroupBox1.TabStop = $false
+$GroupBox1.Text = [System.String]'System Tweeks'
+$GroupBox1.UseCompatibleTextRendering = $true
+#
+#Button27
+#
+$Button27.BackColor = [System.Drawing.Color]::Silver
+$Button27.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]6,[System.Int32]20))
+$Button27.Name = [System.String]'Button27'
+$Button27.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]279,[System.Int32]35))
+$Button27.TabIndex = [System.Int32]0
+$Button27.Text = [System.String]'System Boost (Remove Bloat)'
+$Button27.UseCompatibleTextRendering = $true
+$Button27.UseVisualStyleBackColor = $false
+$Button27.add_Click($Button27_Click)
+#
+#Button28
+#
+$Button28.BackColor = [System.Drawing.Color]::Silver
+$Button28.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]295,[System.Int32]20))
+$Button28.Name = [System.String]'Button28'
+$Button28.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]270,[System.Int32]35))
+$Button28.TabIndex = [System.Int32]1
+$Button28.Text = [System.String]'Windows Updates (Security only)'
+$Button28.UseCompatibleTextRendering = $true
+$Button28.UseVisualStyleBackColor = $false
+$Button28.add_Click($Button28_Click)
+#
+#PictureBox1
+#
+$PictureBox1.ImageLocation = "https://github.com/xmerric/xmdebloat/blob/main/xmerric.png?raw=true"
+$PictureBox1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]83,[System.Int32]605))
+$PictureBox1.Name = [System.String]'PictureBox1'
+$PictureBox1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]577,[System.Int32]183))
+$PictureBox1.SizeMode = [System.Windows.Forms.PictureBoxSizeMode]::CenterImage
+$PictureBox1.TabIndex = [System.Int32]28
+$PictureBox1.TabStop = $false
+$PictureBox1.add_Click($PictureBox1_Click)
+#
 #Form1
 #
-$Form1.ClientSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]749,[System.Int32]586))
+$Form1.ClientSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]749,[System.Int32]824))
+$Form1.Controls.Add($PictureBox1)
+$Form1.Controls.Add($GroupBox1)
 $Form1.Controls.Add($Label1)
+$Form1.Controls.Add($Button26)
 $Form1.Controls.Add($Button25)
 $Form1.Controls.Add($Button24)
 $Form1.Controls.Add($Button23)
@@ -516,6 +953,8 @@ $Form1.Controls.Add($Button2)
 $Form1.Controls.Add($Button1)
 $Form1.Text = [System.String]'Michaels Installer'
 $Form1.add_Load($Form1_Load)
+$GroupBox1.ResumeLayout($false)
+([System.ComponentModel.ISupportInitialize]$PictureBox1).EndInit()
 $Form1.ResumeLayout($false)
 Add-Member -InputObject $Form1 -Name base -Value $base -MemberType NoteProperty
 Add-Member -InputObject $Form1 -Name Button1 -Value $Button1 -MemberType NoteProperty
@@ -543,6 +982,11 @@ Add-Member -InputObject $Form1 -Name Button22 -Value $Button22 -MemberType NoteP
 Add-Member -InputObject $Form1 -Name Button23 -Value $Button23 -MemberType NoteProperty
 Add-Member -InputObject $Form1 -Name Button24 -Value $Button24 -MemberType NoteProperty
 Add-Member -InputObject $Form1 -Name Button25 -Value $Button25 -MemberType NoteProperty
+Add-Member -InputObject $Form1 -Name Button26 -Value $Button26 -MemberType NoteProperty
+Add-Member -InputObject $Form1 -Name GroupBox1 -Value $GroupBox1 -MemberType NoteProperty
+Add-Member -InputObject $Form1 -Name Button28 -Value $Button28 -MemberType NoteProperty
+Add-Member -InputObject $Form1 -Name Button27 -Value $Button27 -MemberType NoteProperty
+Add-Member -InputObject $Form1 -Name PictureBox1 -Value $PictureBox1 -MemberType NoteProperty
 }
 . InitializeComponent
 
